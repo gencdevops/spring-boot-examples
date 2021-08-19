@@ -15,8 +15,8 @@ public class AgeInfoDisplay {
     private final Temporal now;
 
     public AgeInfoDisplay(@Qualifier("getBirhDateTemporal") Temporal localDate,
-                          @Qualifier("todayTemporal") Temporal today,
-                          @Qualifier("nowTemporal") Temporal now) {
+                          @Qualifier("today") Temporal today,
+                          @Qualifier("now") Temporal now) {
         this.temporal = localDate;
         this.today = today;
         this.now = now;
@@ -24,6 +24,8 @@ public class AgeInfoDisplay {
 
     @PostConstruct
     public void displayGetAge() throws InterruptedException {
+        System.out.println("-----------------------------------------------");
+
         System.out.println("AgeInfoDisplay : " + DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss").format(now));
         Long age = ChronoUnit.DAYS.between(temporal, today) / 365;
 
@@ -32,5 +34,7 @@ public class AgeInfoDisplay {
 
 
         System.out.printf("age : %d\n", age);
+        System.out.println("-----------------------------------------------");
+
     }
 }

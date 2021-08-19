@@ -16,17 +16,21 @@ public class BirthDateInfoDisplay {
 
     BirthDateInfoDisplay(
             @Qualifier("getBirhDateTemporal") Temporal localDate,
-            @Qualifier("todayTemporal") Temporal now) {
+            @Qualifier("now") Temporal now) {
         this.localDate = localDate;
         this.now = now;
     }
 
     @PostConstruct
     public void displayBirthDate() {
+        System.out.println("-----------------------------------------------");
+
         String birthDateText = DateTimeFormatter.ofPattern("dd:MM:yyyy").format(localDate);
 
         System.out.println("BirthDateInfoDisplay.displayBirthDate : " + birthDateText);
         System.out.println("BirthDateInfoDisplay : " + DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss").format(now));
+        System.out.println("-----------------------------------------------");
+
     }
 
 
