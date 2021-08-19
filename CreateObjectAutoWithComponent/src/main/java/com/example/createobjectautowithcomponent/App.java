@@ -1,14 +1,13 @@
 package com.example.createobjectautowithcomponent;
 
-import org.csystem.util.Console;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CreateObjectAutoWithComponentApplication {
+public class App {
 
     public static void main(String[] args) {
-        SpringApplication.run(CreateObjectAutoWithComponentApplication.class, args);
+        SpringApplication.run(App.class, args);
 
 
     }
