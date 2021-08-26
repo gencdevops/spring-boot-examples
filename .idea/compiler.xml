@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="DependencyInjection" />
         <module name="ValueAnnotation" />
         <module name="CreateObjectAutoWithComponent" />
+        <module name="ApplicationRunner" />
+        <module name="DependencyInjection" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ApplicationRunner" target="11" />
       <module name="CreateObjectAutoWithComponent" target="11" />
       <module name="demo" target="11" />
       <module name="DependencyInjection" target="11" />
@@ -20,6 +22,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApplicationRunner" options="-parameters" />
       <module name="CreateObjectAutoWithComponent" options="-parameters" />
       <module name="DependencyInjection" options="-parameters" />
       <module name="ValueAnnotation" options="-parameters" />
