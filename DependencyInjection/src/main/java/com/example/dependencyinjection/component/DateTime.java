@@ -1,12 +1,14 @@
 package com.example.dependencyinjection.component;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 
-@Component
+@Component("myDateTime")
+@Scope("prototype")
 public class DateTime {
     private final Temporal date;
     private final Temporal time;

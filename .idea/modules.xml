@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/CreateObjectAutoWithComponent/CreateObjectAutoWithComponent.iml" filepath="$PROJECT_DIR$/CreateObjectAutoWithComponent/CreateObjectAutoWithComponent.iml" />
       <module fileurl="file://$PROJECT_DIR$/DependencyInjection/DependencyInjection.iml" filepath="$PROJECT_DIR$/DependencyInjection/DependencyInjection.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SpringBoot.iml" filepath="$PROJECT_DIR$/.idea/SpringBoot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ValueAnnotation/ValueAnnotation.iml" filepath="$PROJECT_DIR$/ValueAnnotation/ValueAnnotation.iml" />
     </modules>
   </component>
 </project>
