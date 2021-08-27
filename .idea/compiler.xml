@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ValueAnnotation" />
         <module name="CreateObjectAutoWithComponent" />
+        <module name="CollectionInjection" />
         <module name="ApplicationRunner" />
         <module name="DependencyInjection" />
         <module name="RandomGneratorDO-NOT" />
@@ -15,6 +16,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ApplicationRunner" target="11" />
+      <module name="CollectionInjection" target="11" />
       <module name="CreateObjectAutoWithComponent" target="11" />
       <module name="demo" target="11" />
       <module name="DependencyInjection" target="11" />
@@ -25,6 +27,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ApplicationRunner" options="-parameters" />
+      <module name="CollectionInjection" options="-parameters" />
       <module name="CreateObjectAutoWithComponent" options="-parameters" />
       <module name="DependencyInjection" options="-parameters" />
       <module name="RandomGneratorDO-NOT" options="-parameters" />
