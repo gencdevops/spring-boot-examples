@@ -7,11 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ValueAnnotation" />
+        <module name="ServletRequestInfo" />
         <module name="CreateObjectAutoWithComponent" />
-        <module name="CollectionInjection" />
         <module name="ApplicationRunner" />
-        <module name="DependencyInjection" />
+        <module name="CollectionInjection" />
         <module name="RandomGneratorDO-NOT" />
+        <module name="DependencyInjection" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,6 +22,7 @@
       <module name="demo" target="11" />
       <module name="DependencyInjection" target="11" />
       <module name="RandomGneratorDO-NOT" target="11" />
+      <module name="ServletRequestInfo" target="11" />
       <module name="ValueAnnotation" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -31,6 +33,7 @@
       <module name="CreateObjectAutoWithComponent" options="-parameters" />
       <module name="DependencyInjection" options="-parameters" />
       <module name="RandomGneratorDO-NOT" options="-parameters" />
+      <module name="ServletRequestInfo" options="-parameters" />
       <module name="ValueAnnotation" options="-parameters" />
       <module name="demo" options="-parameters" />
     </option>
