@@ -16,6 +16,14 @@
     <properties>
         <java.version>11</java.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>javaapp1-feb-2021</id>
+            <url>http://raw.github.com/oguzkaran/javaapp1-feb-2021-maven-repo/main</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -39,6 +47,12 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.23</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.csystem</groupId>
+            <artifactId>org-csystem-util-data</artifactId>
+            <version>4.0.0</version>
         </dependency>
 
 
