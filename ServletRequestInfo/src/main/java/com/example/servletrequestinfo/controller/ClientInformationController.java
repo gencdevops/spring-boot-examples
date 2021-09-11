@@ -5,6 +5,7 @@ import com.example.servletrequestinfo.ClientInfo;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ public class ClientInformationController {
         this.request = request;
         this.clientInfo = clientInfo;
     }
-
+    // @RequestMapping(value = "/client", method = RequestMethod.GET)
     @GetMapping("/client")
     public ClientInfo getClientInfo() {
         return clientInfo.setLocalAddress(request.getLocalAddr())
@@ -28,6 +29,7 @@ public class ClientInformationController {
                 .setRemoteHost(request.getRemoteHost())
                 .setLocalPort(request.getLocalPort())
                 .setRemotePort(request.getRemotePort());
+
     }
 
 }

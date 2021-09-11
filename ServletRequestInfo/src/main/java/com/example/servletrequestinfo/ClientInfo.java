@@ -70,8 +70,8 @@ public class ClientInfo {
    @Override
    public String toString() {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss");
-      String formatStr = "Local Address: %s, Remote Adress: %s, Local Port: %s, Remote Port: %s, Request Time: %s";
+      String formatStr = "Local Address: %s, Remote Adress: %s, Local Port: %s, Remote Port: %s, Request Time: %s, Time:%s";
       return String.format(formatStr, localAddress, remoteAdress,
-              remoteHost, localPort, remotePort, formatter.format(localDateTime));
+              remoteHost, localPort, remotePort, localDateTime.format(formatter));
    }
 }

@@ -10,6 +10,7 @@
         <module name="ServletRequestInfo" />
         <module name="CreateObjectAutoWithComponent" />
         <module name="ApplicationRunner" />
+        <module name="MovieServiceAppJDBC" />
         <module name="CollectionInjection" />
         <module name="RandomGneratorDO-NOT" />
         <module name="DependencyInjection" />
@@ -21,6 +22,7 @@
       <module name="CreateObjectAutoWithComponent" target="11" />
       <module name="demo" target="11" />
       <module name="DependencyInjection" target="11" />
+      <module name="MovieServiceAppJDBC" target="11" />
       <module name="RandomGneratorDO-NOT" target="11" />
       <module name="ServletRequestInfo" target="11" />
       <module name="ValueAnnotation" target="11" />
@@ -32,6 +34,7 @@
       <module name="CollectionInjection" options="-parameters" />
       <module name="CreateObjectAutoWithComponent" options="-parameters" />
       <module name="DependencyInjection" options="-parameters" />
+      <module name="MovieServiceAppJDBC" options="-parameters" />
       <module name="RandomGneratorDO-NOT" options="-parameters" />
       <module name="ServletRequestInfo" options="-parameters" />
       <module name="ValueAnnotation" options="-parameters" />
