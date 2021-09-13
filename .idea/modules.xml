@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Account/Account.iml" filepath="$PROJECT_DIR$/Account/Account.iml" />
       <module fileurl="file://$PROJECT_DIR$/ApplicationRunner/ApplicationRunner.iml" filepath="$PROJECT_DIR$/ApplicationRunner/ApplicationRunner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BooksStoreApp/BooksStoreApp.iml" filepath="$PROJECT_DIR$/BooksStoreApp/BooksStoreApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/CollectionInjection/CollectionInjection.iml" filepath="$PROJECT_DIR$/CollectionInjection/CollectionInjection.iml" />
       <module fileurl="file://$PROJECT_DIR$/CreateObjectAutoWithComponent/CreateObjectAutoWithComponent.iml" filepath="$PROJECT_DIR$/CreateObjectAutoWithComponent/CreateObjectAutoWithComponent.iml" />
       <module fileurl="file://$PROJECT_DIR$/DependencyInjection/DependencyInjection.iml" filepath="$PROJECT_DIR$/DependencyInjection/DependencyInjection.iml" />

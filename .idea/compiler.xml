@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Account" />
+        <module name="BooksStoreApp" />
         <module name="ValueAnnotation" />
         <module name="ServletRequestInfo" />
         <module name="CreateObjectAutoWithComponent" />
@@ -20,6 +21,7 @@
     <bytecodeTargetLevel>
       <module name="Account" target="11" />
       <module name="ApplicationRunner" target="11" />
+      <module name="BooksStoreApp" target="11" />
       <module name="CollectionInjection" target="11" />
       <module name="CreateObjectAutoWithComponent" target="11" />
       <module name="demo" target="11" />
@@ -34,6 +36,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Account" options="-parameters" />
       <module name="ApplicationRunner" options="-parameters" />
+      <module name="BooksStoreApp" options="-parameters" />
       <module name="CollectionInjection" options="-parameters" />
       <module name="CreateObjectAutoWithComponent" options="-parameters" />
       <module name="DependencyInjection" options="-parameters" />
