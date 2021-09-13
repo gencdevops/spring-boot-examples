@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/CollectionInjection/pom.xml" />
         <option value="$PROJECT_DIR$/ServletRequestInfo/pom.xml" />
         <option value="$PROJECT_DIR$/MovieServiceAppJDBC/pom.xml" />
+        <option value="$PROJECT_DIR$/Account/pom.xml" />
       </list>
     </option>
   </component>

@@ -8,23 +8,54 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Repository
 public class MovieRepository implements IMovieRepository{
-    private static final String SAVE_SQL = "insert into movies (name, scene_time, rating, cost, imdb) " +
-            "values (:name, :scene_time, :rating, :cost, :imdb)";
+    private static final String SAVE_SQL = "insert into movies (name, rating, scene_time, cost, imdb) " +
+            "values (:name, :rating, :sceneTime, :cost, :imdb)";
+    private static final String COUNT_SQL = "select count(*) from movies";
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public MovieRepository(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    private static void fillCounts(ResultSet resultSet, ArrayList<Long> counts) throws SQLException {
+        do{
+            counts.add(resultSet.getLong(1));
+        }while(resultSet.next());
+    }
+
     @Override
     public <S extends Movie> S save(S movie) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(SAVE_SQL, new BeanPropertySqlParameterSource(movie) , keyHolder, new String[] {"movie_id"});
+        var parameterSource = new BeanPropertySqlParameterSource(movie);
+        parameterSource.registerSqlType("sceneTime", Types.DATE);
+        jdbcTemplate.update(SAVE_SQL, parameterSource, keyHolder, new String[] {"movie_id"});
+      movie.id = keyHolder.getKey().longValue();
         return movie;
+    }
+
+    @Override
+    public long count() {
+       var counts = new ArrayList<Long>();
+    jdbcTemplate.query(COUNT_SQL, (ResultSet rs) -> fillCounts(rs,counts));
+    return counts.isEmpty() ? 0 : counts.get(0);
+    }
+
+    @Override
+    public Iterable<Movie> findMoviesByYear(int year) {
+        return null;
+    }
+
+    @Override
+    public Iterable<Movie> findMoviesByMonthYear(int month, int year) {
+        return null;
     }
 
     @Override
@@ -32,10 +63,7 @@ public class MovieRepository implements IMovieRepository{
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    public long count() {
-       throw new UnsupportedOperationException();
-    }
+
 
     @Override
     public void delete(Movie entity) {
@@ -76,7 +104,6 @@ public class MovieRepository implements IMovieRepository{
     public Optional<Movie> findById(Long aLong) {
         throw new UnsupportedOperationException();
     }
-
 
 
 
