@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/CollectionInjection/CollectionInjection.iml" filepath="$PROJECT_DIR$/CollectionInjection/CollectionInjection.iml" />
       <module fileurl="file://$PROJECT_DIR$/CreateObjectAutoWithComponent/CreateObjectAutoWithComponent.iml" filepath="$PROJECT_DIR$/CreateObjectAutoWithComponent/CreateObjectAutoWithComponent.iml" />
       <module fileurl="file://$PROJECT_DIR$/DependencyInjection/DependencyInjection.iml" filepath="$PROJECT_DIR$/DependencyInjection/DependencyInjection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MovieApi/MovieApi.iml" filepath="$PROJECT_DIR$/MovieApi/MovieApi.iml" />
       <module fileurl="file://$PROJECT_DIR$/MovieServiceAppJDBC/MovieServiceAppJDBC.iml" filepath="$PROJECT_DIR$/MovieServiceAppJDBC/MovieServiceAppJDBC.iml" />
       <module fileurl="file://$PROJECT_DIR$/RandomGneratorDO-NOT/RandomGneratorDO-NOT.iml" filepath="$PROJECT_DIR$/RandomGneratorDO-NOT/RandomGneratorDO-NOT.iml" />
       <module fileurl="file://$PROJECT_DIR$/ServletRequestInfo/ServletRequestInfo.iml" filepath="$PROJECT_DIR$/ServletRequestInfo/ServletRequestInfo.iml" />

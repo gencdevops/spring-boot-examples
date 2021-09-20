@@ -6,16 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Account" />
         <module name="BooksStoreApp" />
+        <module name="Account" />
         <module name="ValueAnnotation" />
-        <module name="ServletRequestInfo" />
         <module name="CreateObjectAutoWithComponent" />
+        <module name="ServletRequestInfo" />
         <module name="ApplicationRunner" />
         <module name="MovieServiceAppJDBC" />
         <module name="CollectionInjection" />
-        <module name="RandomGneratorDO-NOT" />
         <module name="DependencyInjection" />
+        <module name="RandomGneratorDO-NOT" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
