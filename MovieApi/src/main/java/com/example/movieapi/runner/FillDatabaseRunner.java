@@ -33,5 +33,6 @@ public class FillDatabaseRunner implements ApplicationRunner {
 
         movieRespository.save(movie);
         System.out.println("id : " + movie.id);
+        System.out.println("Count = " + movieRespository.count());
     }
 }
