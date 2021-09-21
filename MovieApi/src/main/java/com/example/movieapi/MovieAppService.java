@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class MovieApiApplication {
+public class MovieAppService {
 
     public static void main(String[] args) {
-        SpringApplication.run(MovieApiApplication.class, args);
+        SpringApplication.run(MovieAppService.class, args);
     }
 
 }
