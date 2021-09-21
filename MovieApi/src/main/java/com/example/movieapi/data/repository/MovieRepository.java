@@ -7,20 +7,21 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Optional;
 
 @Repository
-public class MovieRepository implements IMovieRespository{
+public class MovieRepository implements IMovieRepository {
     private static final String SAVE_SQL = "insert into movies (name, scene_time, rating, cost, imdb) values(:name, :sceneTime, :rating, :cost, :imdb)";
     private static final String COUNT_SQL = "select count(*) from movies";
-    private static final String FIND_BY_MONTH_YEAR = "select * from movies where date_part('month', scene_time) = 9 and date_part('year', scene_time) = 2021";
-    private static final String FIND_BY_YEAR = "select * from movies where date_part('year', scene_time) = 2020";
-
+    private static final String FIND_BY_MONTH_YEAR_SQL = "select * from movies where date_part('month', scene_time) = 9 and date_part('year', scene_time) = 2021";
+    private static final String FIND_BY_YEAR_SQL = "select * from movies where date_part('year', scene_time) = 2020";
+    private static final String FIND_ALL_SQL = "select * from movies";
 
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
@@ -34,6 +35,29 @@ public class MovieRepository implements IMovieRespository{
             counts.add(resultSet.getLong(1));
         }while(resultSet.next());
     }
+
+    private static void fillMovies(ResultSet resultSet, ArrayList<Movie> movies) throws SQLException{
+        do{
+            long id = resultSet.getLong(1);
+            String name = resultSet.getString(2);
+            LocalDate sceneTime = resultSet.getDate(3).toLocalDate();
+            long rating = resultSet.getLong(4);
+            BigDecimal cost = resultSet.getBigDecimal(5);
+            float imdb = resultSet.getFloat(6);
+
+            movies.add(new Movie(id, name, sceneTime, rating, cost, imdb));
+
+        }while(resultSet.next());
+    }
+
+    @Override
+    public Iterable<Movie> findAll() throws UnsupportedOperationException {
+       var movies = new ArrayList<Movie>();
+        jdbcTemplate.query(FIND_ALL_SQL, (ResultSet rs) -> fillMovies(rs,movies));
+
+        return movies;
+    }
+
 
     @Override
     public long count() throws UnsupportedOperationException {
@@ -51,7 +75,8 @@ public class MovieRepository implements IMovieRespository{
 
       jdbcTemplate.update(SAVE_SQL,parameterSource, keyHolder, new String[] {"movie_id"});
 
-      movie.id = Objects.requireNonNull(keyHolder.getKey()).longValue();
+
+      movie.setId(keyHolder.getKey().longValue());
 
     return movie;
   }
@@ -84,10 +109,7 @@ public class MovieRepository implements IMovieRespository{
         return false;
     }
 
-    @Override
-    public Iterable<Movie> findAll() throws UnsupportedOperationException {
-        return null;
-    }
+
 
     @Override
     public Iterable<Movie> findAllById(Iterable<Long> longs) throws UnsupportedOperationException {
