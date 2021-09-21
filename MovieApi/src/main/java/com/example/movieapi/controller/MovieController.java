@@ -1,6 +1,7 @@
 package com.example.movieapi.controller;
 
 import com.example.movieapi.data.entity.Movie;
+import com.example.movieapi.dto.MovieDTO;
 import com.example.movieapi.service.MovieAppService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +22,13 @@ private final MovieAppService movieAppService;
     }
 
     @GetMapping("/movies")
-    public List<Movie> findAll() {
+    public List<MovieDTO> findAll() {
     return movieAppService.findAllMovies();
+    }
+
+    @GetMapping("/count")
+    public long count() {
+        return movieAppService.countMovie();
     }
 
 }
