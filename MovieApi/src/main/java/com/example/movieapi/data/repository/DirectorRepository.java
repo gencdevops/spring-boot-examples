@@ -2,12 +2,23 @@ package com.example.movieapi.data.repository;
 
 
 import com.example.movieapi.data.entity.Director;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
 public class DirectorRepository implements IDirectorRepository{
+
+    private final NamedParameterJdbcTemplate jdbcTemplate;
+
+
+    public DirectorRepository(NamedParameterJdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+
+
     @Override
     public long count() {
         throw new  UnsupportedOperationException();
