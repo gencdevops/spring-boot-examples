@@ -1,6 +1,7 @@
 package com.example.movieapi.data.repository;
 
 import com.example.movieapi.data.entity.Movie;
+import org.csystem.util.data.repository.RepositoryException;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -51,11 +52,23 @@ public class MovieRepository implements IMovieRepository {
     }
 
     @Override
-    public Iterable<Movie> findAll() throws UnsupportedOperationException {
-       var movies = new ArrayList<Movie>();
-        jdbcTemplate.query(FIND_ALL_SQL, (ResultSet rs) -> fillMovies(rs,movies));
+    public Iterable<Movie> findMoviesByMonthYear(int month, int year) {
+        return null;
+    }
 
-        return movies;
+    @Override
+    public Iterable<Movie> findMoviesByYear(int year) {
+       throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Iterable<Movie> findAll() throws UnsupportedOperationException {
+
+           var movies = new ArrayList<Movie>();
+           jdbcTemplate.query(FIND_ALL_SQL, (ResultSet rs) -> fillMovies(rs,movies));
+
+           return movies;
+
     }
 
 
@@ -128,13 +141,7 @@ public class MovieRepository implements IMovieRepository {
         return null;
     }
 
-    @Override
-    public Iterable<Movie> findMoviesByYear(int year) {
-        return null;
-    }
 
-    @Override
-    public Iterable<Movie> findMoviesByMonthYear(int month, int year) {
-        return null;
-    }
+
+
 }
