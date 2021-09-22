@@ -43,6 +43,9 @@ public class MovieAppDAL {
         return directorRepository.save(director);
     }
 
+    public Iterable<Director> findAllDirectors() {
+        return directorRepository.findAll();
+    }
 
 
 }

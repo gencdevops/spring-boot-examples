@@ -28,11 +28,11 @@ public class Director {
         this.m_id = m_id;
     }
 
-    public String getM_name() {
+    public String getName() {
         return m_name;
     }
 
-    public void setM_name(String m_name) {
+    public void setName(String m_name) {
         this.m_name = m_name;
     }
 
