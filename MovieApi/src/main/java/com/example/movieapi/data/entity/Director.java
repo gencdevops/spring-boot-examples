@@ -3,41 +3,44 @@ package com.example.movieapi.data.entity;
 import java.time.LocalDate;
 
 public class Director {
-    private int m_id;
-    private String name;
-    private LocalDate birthDate;
+    private long m_id;
+    private String m_name;
+    private LocalDate m_birthDate;
 
     public Director() {
 
+
     }
 
-    public Director(int m_id, String name, LocalDate birthDate) {
+
+    public Director(long m_id, String name, LocalDate birthDate) {
         this.m_id = m_id;
-        this.name = name;
-        this.birthDate = birthDate;
+        this.m_name = name;
+        this.m_birthDate = birthDate;
     }
 
-    public int getM_id() {
+
+    public long getId() {
         return m_id;
     }
 
-    public void setM_id(int m_id) {
+    public void setId(long m_id) {
         this.m_id = m_id;
     }
 
-    public String getName() {
-        return name;
+    public String getM_name() {
+        return m_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setM_name(String m_name) {
+        this.m_name = m_name;
     }
 
     public LocalDate getBirthDate() {
-        return birthDate;
+        return m_birthDate;
     }
 
     public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+        this.m_birthDate = birthDate;
     }
 }
