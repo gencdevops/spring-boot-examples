@@ -26,6 +26,7 @@ public class MovieConverter {
     }
 
     public Movie toMovie(MovieDTO movieDTO) {
-        throw new UnsupportedOperationException();
+       return null;
+
     }
 }
