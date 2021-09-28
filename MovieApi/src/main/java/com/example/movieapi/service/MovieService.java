@@ -37,6 +37,11 @@ public class MovieService {
                 .collect(Collectors.toList());
     }
 
+    private MovieDTO saveMovieCallback(MovieDTO movieDTO) {
+         movieAppDAL.saveMovie(movieConverter.toMovie(movieDTO));
+        return movieDTO;
+    }
+
 
 
     public MovieService(MovieAppDAL movieAppDAL, MovieConverter movieConverter) {
@@ -57,12 +62,9 @@ public class MovieService {
 
 
     public MovieDTO saveMovie(MovieDTO movieDTO) {
-        try {
-            movieAppDAL.saveMovie(movieConverter.toMovie(movieDTO));
-            return movieDTO;
-        } catch (RepositoryException ex) {
-            throw new DataServiceException("MovieAppService.saveMovie", ex.getCause());
-        }
+        return DatabaseUtil.doWorkForService(() -> saveMovieCallback(movieDTO),
+                "MovieAppService.saveMovie");
+
     }
 
 
@@ -73,7 +75,7 @@ public class MovieService {
 
     public List<MovieDTO> findMoviesByYear(int year) {
 
-     return  DatabaseUtil.doWorkForService( () -> findMoviesByYear(year) ,
+     return  DatabaseUtil.doWorkForService( () -> findMoviesByYearCallback(year) ,
              "MovieAppService.findMoviesByYear");
 
 
