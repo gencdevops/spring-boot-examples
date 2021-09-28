@@ -19,6 +19,25 @@ public class MovieService {
     private final MovieAppDAL movieAppDAL;
     private final MovieConverter movieConverter;
 
+    private List<MovieDTO> findAllMoviesCallback() {
+        return StreamSupport.stream(movieAppDAL.findAllMovies().spliterator(), false)
+                .map(movieConverter::toMovieDTO)
+                .collect(Collectors.toList());
+    }
+
+    private List<MovieDTO> findMoviesByMonthYearCallback(int month, int year) {
+        return StreamSupport.stream(movieAppDAL.findMoviesByMonthYear(month,year).spliterator(),false)
+                .map(movieConverter::toMovieDTO)
+                .collect(Collectors.toList());
+    }
+
+    private List<MovieDTO> findMoviesByYearCallback(int year) {
+        return StreamSupport.stream(movieAppDAL.findMoviesByYear(year).spliterator(), false)
+                .map(movieConverter::toMovieDTO)
+                .collect(Collectors.toList());
+    }
+
+
 
     public MovieService(MovieAppDAL movieAppDAL, MovieConverter movieConverter) {
         this.movieAppDAL = movieAppDAL;
@@ -26,22 +45,14 @@ public class MovieService {
     }
 
     public List<MovieDTO> findAllMovies() {
-        try {
-            return StreamSupport.stream(movieAppDAL.findAllMovies().spliterator(), false)
-                    .map(movieConverter::toMovieDTO)
-                    .collect(Collectors.toList());
-        } catch (RepositoryException ex) {
-            throw new DataServiceException("MovieAppServive.findAllMovies", ex.getCause());
-        }
+       return DatabaseUtil.doWorkForService(this::findAllMovies,
+               "MovieAppService.findAllMovies");
 
     }
 
     public long countMovies() {
-        try {
-            return movieAppDAL.countMovies();
-        } catch (RepositoryException ex) {
-            throw new DataServiceException("MovieAppService.countMovies", ex.getCause());
-        }
+       return DatabaseUtil.doWorkForService(movieAppDAL::countMovies,
+               "MovieAppService.countMovies");
     }
 
 
@@ -56,20 +67,14 @@ public class MovieService {
 
 
     public List<MovieDTO> findMoviesByMonthYear(int month, int year) {
-        try {
-      return StreamSupport.stream(movieAppDAL.findMoviesByMonthYear(month,year).spliterator(),false)
-              .map(movieConverter::toMovieDTO)
-              .collect(Collectors.toList());
-        } catch (RepositoryException ex) {
-            throw new DataServiceException("MovieAppService.findMoviesByMonthYear", ex.getCause());
-        }
+     return  DatabaseUtil.doWorkForService(() -> findMoviesByMonthYearCallback(month, year),
+               "MovieAppService.findMoviesByMonthYear");
     }
 
     public List<MovieDTO> findMoviesByYear(int year) {
 
-     return  DatabaseUtil.doWorkForService( () ->  StreamSupport.stream(movieAppDAL.findMoviesByYear(year).spliterator(), false)
-                .map(movieConverter::toMovieDTO)
-                .collect(Collectors.toList()),  "MovieAppService.findMoviesByYear");
+     return  DatabaseUtil.doWorkForService( () -> findMoviesByYear(year) ,
+             "MovieAppService.findMoviesByYear");
 
 
     }
