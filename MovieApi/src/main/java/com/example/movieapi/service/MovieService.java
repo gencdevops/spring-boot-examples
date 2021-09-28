@@ -5,6 +5,7 @@ import com.example.movieapi.converter.MovieConverter;
 import com.example.movieapi.data.dataaccesslayer.MovieAppDAL;
 import com.example.movieapi.dto.DirectorDTO;
 import com.example.movieapi.dto.MovieDTO;
+import com.example.movieapi.util.DatabaseUtil;
 import org.csystem.util.data.repository.RepositoryException;
 import org.csystem.util.data.service.DataServiceException;
 import org.springframework.stereotype.Service;
@@ -65,13 +66,12 @@ public class MovieService {
     }
 
     public List<MovieDTO> findMoviesByYear(int year) {
-        try {
-        return StreamSupport.stream(movieAppDAL.findMoviesByYear(year).spliterator(), false)
+
+     return  DatabaseUtil.doWorkForService( () ->  StreamSupport.stream(movieAppDAL.findMoviesByYear(year).spliterator(), false)
                 .map(movieConverter::toMovieDTO)
-                .collect(Collectors.toList());
-        } catch (RepositoryException ex) {
-            throw new DataServiceException("MovieAppService.findMoviesByYear", ex.getCause());
-        }
+                .collect(Collectors.toList()),  "MovieAppService.findMoviesByYear");
+
+
     }
 
 
