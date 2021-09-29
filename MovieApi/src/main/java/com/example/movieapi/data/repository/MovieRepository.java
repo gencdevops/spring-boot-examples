@@ -24,6 +24,8 @@ public class MovieRepository implements IMovieRepository {
     private static final String FIND_BY_MONTH_YEAR_SQL = "select * from movies where date_part('month', scene_time) = :month and date_part('year', scene_time) = :year";
     private static final String FIND_BY_YEAR_SQL = "select * from movies where date_part('year', scene_time) = :year";
     private static final String FIND_ALL_SQL = "select * from movies";
+    private static final String FIND_BY_YEAR_DETAILED_SQL = "select m.name, m.scene_time, m.rating, m.cost, d.name  from movies_to_director md inner join directors d on md.director_id = d.director_id" +
+            "inner join movies m on md.movie_id = m.movie_id where date_part('year', m.scene_time) = :year";
 
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
