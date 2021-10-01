@@ -16,6 +16,10 @@ public class Movie {
 
     }
 
+    public Movie( String name, LocalDate m_sceneTime, long m_rating, BigDecimal m_cost, float m_imdb) {
+        this(0, name, m_sceneTime, m_rating, m_cost, m_imdb);
+    }
+
     public Movie(long m_id, String m_name, LocalDate m_sceneTime, long m_rating, BigDecimal m_cost, float m_imdb) {
         this.m_id = m_id;
         this.m_name = m_name;

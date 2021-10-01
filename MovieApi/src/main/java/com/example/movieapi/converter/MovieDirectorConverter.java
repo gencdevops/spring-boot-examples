@@ -2,6 +2,7 @@ package com.example.movieapi.converter;
 
 import com.example.movieapi.data.entity.Director;
 import com.example.movieapi.data.entity.Movie;
+import com.example.movieapi.data.entity.MovieDirectorDetail;
 import com.example.movieapi.dto.MovieDTO;
 import com.example.movieapi.dto.MovieDetailDTO;
 import org.springframework.stereotype.Component;
@@ -17,16 +18,11 @@ public class MovieDirectorConverter {
     }
 
 
-    public MovieDetailDTO toMovieDetailDTO(Movie movie, Director director) {
+    public MovieDetailDTO toMovieDetailDTO(MovieDirectorDetail detail) {
         MovieDetailDTO movieDetailDTO = new MovieDetailDTO();
 
-        var movieDTO = movieConverter.toMovieDTO(movie);
-        var directorDTO = directorConverter.toDirectorDTO(director);
-        movieDetailDTO.setName(movie.getName());
-        movieDetailDTO.setSceneTimeStr(movieDTO.getSceneTimeStr());
-        movieDetailDTO.setRating(movieDTO.getRating());
-        movieDetailDTO.setCost(movieDTO.getCost());
-        movieDetailDTO.setDirectorName(directorDTO.getName());
+        movieDetailDTO.setMovieDTO(movieConverter.toMovieDTO(detail.getMovie()));
+        movieDetailDTO.setDirectorName(directorConverter.toDirectorDTO(detail.getDirector()).getName());
 
         return movieDetailDTO;
     }

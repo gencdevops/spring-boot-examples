@@ -13,6 +13,7 @@
         <module name="CreateObjectAutoWithComponent" />
         <module name="ServletRequestInfo" />
         <module name="ApplicationRunner" />
+        <module name="TodoAppJPA" />
         <module name="MovieServiceAppJDBC" />
         <module name="MovieApi" />
         <module name="CollectionInjection" />
@@ -32,6 +33,7 @@
       <module name="MovieServiceAppJDBC" target="11" />
       <module name="RandomGneratorDO-NOT" target="11" />
       <module name="ServletRequestInfo" target="11" />
+      <module name="TodoAppJPA" target="11" />
       <module name="ValueAnnotation" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -47,6 +49,7 @@
       <module name="MovieServiceAppJDBC" options="-parameters" />
       <module name="RandomGneratorDO-NOT" options="-parameters" />
       <module name="ServletRequestInfo" options="-parameters" />
+      <module name="TodoAppJPA" options="-parameters" />
       <module name="ValueAnnotation" options="-parameters" />
       <module name="demo" options="-parameters" />
     </option>

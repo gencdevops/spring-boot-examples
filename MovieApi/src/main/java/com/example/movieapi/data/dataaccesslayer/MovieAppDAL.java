@@ -3,6 +3,7 @@ package com.example.movieapi.data.dataaccesslayer;
 
 import com.example.movieapi.data.entity.Director;
 import com.example.movieapi.data.entity.Movie;
+import com.example.movieapi.data.entity.MovieDirectorDetail;
 import com.example.movieapi.data.repository.IDirectorRepository;
 import com.example.movieapi.data.repository.IMovieRepository;
 import com.example.movieapi.util.DatabaseUtil;
@@ -51,6 +52,11 @@ public class MovieAppDAL {
     public Iterable<Movie> findMoviesByMonthYear(int month, int year) {
         return DatabaseUtil.doWorkForRepository(() -> movieRepository.findMoviesByMonthYear(month, year),
                 "MovieAppDAL.findMoviesByMonthYear");
+    }
+
+    public Iterable<MovieDirectorDetail> findMoviesDetailsByYear(int year) {
+        return DatabaseUtil.doWorkForRepository(() -> movieRepository.findMoviesDetailsByYear(year),
+                "MovieServiceAppDAL.findMoviesDetailsByYear");
     }
 
     public Iterable<Movie> findMoviesByYear(int year) {

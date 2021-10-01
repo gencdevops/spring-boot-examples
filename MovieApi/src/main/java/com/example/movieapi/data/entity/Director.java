@@ -12,6 +12,13 @@ public class Director {
 
     }
 
+    public Director(String name) {
+        this(0, name, null);
+    }
+
+    public Director(long id, String name) {
+       this(id, name, null);
+    }
 
     public Director(long m_id, String name, LocalDate birthDate) {
         this.m_id = m_id;

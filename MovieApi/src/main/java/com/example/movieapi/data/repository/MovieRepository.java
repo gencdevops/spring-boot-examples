@@ -1,6 +1,8 @@
 package com.example.movieapi.data.repository;
 
+import com.example.movieapi.data.entity.Director;
 import com.example.movieapi.data.entity.Movie;
+import com.example.movieapi.data.entity.MovieDirectorDetail;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -54,6 +56,22 @@ public class MovieRepository implements IMovieRepository {
         } while (resultSet.next());
     }
 
+    private static void fillMoviesDetails(ResultSet resultSet, ArrayList<MovieDirectorDetail> details) throws SQLException {
+        do {
+
+            String movieName = resultSet.getString(1);
+            LocalDate sceneTime = resultSet.getDate(2).toLocalDate();
+            long rating = resultSet.getLong(3);
+            BigDecimal cost = resultSet.getBigDecimal(4);
+           String directorName = resultSet.getString(5);
+
+           var movie = new Movie(movieName, sceneTime, rating, cost, 0);
+           var director = new Director(directorName);
+            details.add(new MovieDirectorDetail(movie,director));
+
+        } while (resultSet.next());
+    }
+
     @Override
     public Iterable<Movie> findMoviesByMonthYear(int month, int year) {
         Map<String, Object> parameterMap = new HashMap<>();
@@ -66,6 +84,17 @@ public class MovieRepository implements IMovieRepository {
         return movies;
 
 
+    }
+
+    @Override
+    public Iterable<MovieDirectorDetail> findMoviesDetailsByYear(int year) {
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("year", year);
+        var details = new ArrayList<MovieDirectorDetail>();
+
+        jdbcTemplate.query(FIND_BY_YEAR_DETAILED_SQL, parameterMap, (ResultSet rs) -> fillMoviesDetails(rs, details));
+
+        return details;
     }
 
     @Override

@@ -48,8 +48,8 @@ public class MovieService {
     }
 
     private List<MovieDetailDTO> findMoviesDetailsByYearCallback(int year) {
-        return StreamSupport.stream(movieAppDAL.findMoviesByYear(year).spliterator(), false)
-                .map(m -> movieDirectorConverter.toMovieDetailDTO(m, new Director(0, "Kubi Seker", LocalDate.of(1996,9,17))))
+        return StreamSupport.stream(movieAppDAL.findMoviesDetailsByYear(year).spliterator(), false)
+                .map(movieDirectorConverter::toMovieDetailDTO)
                         .collect(Collectors.toList());
 
     }

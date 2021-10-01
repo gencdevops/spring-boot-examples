@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.csystem.util.exception.ExceptionUtil.subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,35 +37,45 @@ public class MovieController {
     }
 
     @GetMapping("/info")
-    public List<MovieDTO> findMovieByYear(@RequestParam("year") int year) {
-        try {
-            return movieService.findMoviesByYear(year);
-        } catch (DataServiceException ex) {
-            return new ArrayList<>(); //to do exception
-        }
+    public List<MovieDTO> findMovieByYear(@RequestParam("year") int year)
+    {
+        return subscribe(() -> movieService.findMoviesByYear(year), ex -> new ArrayList<>());
     }
 
     @GetMapping("/infos")
-    public ResponseEntity<List<MovieDTO>> findMovieByYear(@RequestParam("year") String yearStr) {
-        ResponseEntity<List<MovieDTO>> responseEntity = ResponseEntity.badRequest().build();
-        try {
-          responseEntity = ResponseEntity.ok(movieService.findMoviesByYear(Integer.parseInt(yearStr)));
-        } catch (DataServiceException | NumberFormatException ex) {
+    public List<MovieDTO> findMovieByYear(@RequestParam("year") String yearStr)
+    {
+        return subscribe(() -> movieService.findMoviesByYear(Integer.parseInt(yearStr)), ex -> new ArrayList<>());
+    }
 
+    @GetMapping("/infosre")
+    public ResponseEntity<List<MovieDTO>> findMovieByYearResponseEntity(@RequestParam("year") String yearStr)
+    {
+        ResponseEntity<List<MovieDTO>> responseEntity = ResponseEntity.badRequest().build();
+
+        try {
+            responseEntity = ResponseEntity.ok(movieService.findMoviesByYear(Integer.parseInt(yearStr)));
         }
+        catch (DataServiceException|NumberFormatException ex) {
+            //...
+        }
+
         return responseEntity;
     }
 
     @GetMapping("/info/detail")
-    public ResponseEntity<List<MovieDetailDTO>> findMoviesDetailsByYear(@RequestParam("year") String yearStr) {
-    ResponseEntity<List<MovieDetailDTO>> responseEntity = ResponseEntity.badRequest().build();
+    public ResponseEntity<List<MovieDetailDTO>> findMoviesDetailsByYear(@RequestParam("year") String yearStr)
+    {
+        ResponseEntity<List<MovieDetailDTO>> responseEntity = ResponseEntity.badRequest().build();
 
-    try{
-        responseEntity = ResponseEntity.ok(movieService.findMoviesDetailsByYear(Integer.parseInt(yearStr)));
-    } catch (DataServiceException | NumberFormatException ex) {
+        try {
+            responseEntity = ResponseEntity.ok(movieService.findMoviesDetailsByYear(Integer.parseInt(yearStr)));
+        }
+        catch (DataServiceException|NumberFormatException ex) {
+            //...
+        }
 
-    }
-    return responseEntity;
+        return responseEntity;
     }
 
     @GetMapping("/count")
