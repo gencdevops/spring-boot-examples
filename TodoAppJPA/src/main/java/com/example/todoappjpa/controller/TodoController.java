@@ -5,10 +5,9 @@ import com.example.todoappjpa.dto.TodoInfoDTO;
 import com.example.todoappjpa.dto.TodoSaveDTO;
 import com.example.todoappjpa.service.TodoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/todo")
@@ -23,6 +22,13 @@ public class TodoController {
     public TodoInfoDTO saveTodo(@RequestBody TodoSaveDTO todoSaveDTO) {
         return todoService.saveTodo(todoSaveDTO);
     }
+
+    @GetMapping("todos/all")
+    public List<TodoInfoDTO> findAllTodos() {
+        return todoService.findAllTodos();
+    }
+
+
 
 
 }

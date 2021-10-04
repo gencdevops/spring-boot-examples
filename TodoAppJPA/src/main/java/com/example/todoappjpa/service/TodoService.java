@@ -8,6 +8,10 @@ import com.example.todoappjpa.dto.TodoSaveDTO;
 import com.example.todoappjpa.util.DatabaseUtil;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 @Service
 public class TodoService {
     private final TodoAppDAL todoAppDAL;
@@ -26,10 +30,21 @@ public class TodoService {
     return todoInfoConverter.toTodoInfoDTO(todoAppDAL.saveTodo(todoSaveConverter.toTodo(todoSaveDTO)));
     }
 
+    private List<TodoInfoDTO> findAllTodosCallback() {
+        return StreamSupport.stream(todoAppDAL.findAllTodos().spliterator(), true)
+                .map(todoInfoConverter::toTodoInfoDTO)
+                .collect(Collectors.toList());
+    }
+
 
 
     public TodoInfoDTO saveTodo(TodoSaveDTO todoSaveDTO) {
     return DatabaseUtil.doWorkForService(() -> saveCallback(todoSaveDTO),
             "TodoService.saveTodo");
     }
+
+    public List<TodoInfoDTO> findAllTodos() {
+        return DatabaseUtil.doWorkForService(this::findAllTodosCallback, "TodoService.findAll");
+    }
+
 }

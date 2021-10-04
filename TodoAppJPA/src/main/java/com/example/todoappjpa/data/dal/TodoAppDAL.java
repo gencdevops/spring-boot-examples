@@ -20,4 +20,8 @@ public class TodoAppDAL {
                "TodoAppDAL.saveTodo");
     }
 
+    public Iterable<Todo> findAllTodos() {
+        return DatabaseUtil.doWorkForRepository(todoRepository::findAll, "TodoAppDAL.findAll");
+    }
+
 }
