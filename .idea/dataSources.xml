@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/moviesdb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="todosapp@localhost" uuid="1eb116cc-2e68-45c2-b9a8-88c0204a7a64">
+    <data-source source="LOCAL" name="todosappdb@localhost" uuid="c26ce9c4-b1a5-4dae-915c-04d4fe84d74d">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/todosapp</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/todosappdb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

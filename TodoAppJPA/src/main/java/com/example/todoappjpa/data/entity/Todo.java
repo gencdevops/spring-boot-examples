@@ -27,6 +27,7 @@ public class Todo {// POJO (Plain Old Java Object)
     @Column(name = "completed" , nullable = false)
     private boolean completed;
 
+
     public long getId() {
         return id;
     }
