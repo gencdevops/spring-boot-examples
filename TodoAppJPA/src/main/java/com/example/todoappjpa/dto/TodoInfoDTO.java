@@ -38,6 +38,7 @@ public class TodoInfoDTO {
         this.insertDateTime = insertDateTime;
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
     public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
