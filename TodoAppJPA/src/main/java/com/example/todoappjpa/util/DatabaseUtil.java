@@ -1,6 +1,7 @@
 package com.example.todoappjpa.util;
 
 import com.example.todoappjpa.data.repository.RepositoryException;
+import com.example.todoappjpa.service.DataServiceException;
 
 import java.util.function.Consumer;
 
@@ -17,7 +18,13 @@ public final class DatabaseUtil {
         }
     }
 
-
+    public static<R> R doWorkForService(ISupplierCallback<R> supplier, String msg) {
+        try {
+            return supplier.get();
+        } catch (Throwable ex) {
+            throw new DataServiceException(msg, ex);
+        }
+    }
 
 
 }
