@@ -27,45 +27,47 @@ public class TodoService {
         this.todoSaveConverter = todoSaveConverter;
     }
 
-    private static <T, R> List<R> toList(Iterable<? extends T> iterable, boolean parallel,
-                                         Function<? super T, ? extends R> function) {
+    private static <T, R> List<R> convertToList(Iterable<? extends T> iterable, boolean parallel,
+                                                Function<? super T, ? extends R> function) {
         return StreamSupport.stream(iterable.spliterator(), parallel)
                 .map(function)
                 .collect(Collectors.toList());
     }
+
+
 
     private TodoInfoDTO saveCallback(TodoSaveDTO todoSaveDTO) {
         return todoInfoConverter.toTodoInfoDTO(todoAppDAL.saveTodo(todoSaveConverter.toTodo(todoSaveDTO)));
     }
 
     private List<TodoInfoDTO> findTodosByTitleCallback(String title) {
-        return toList(todoAppDAL.findTodosByTitle(title), false, todoInfoConverter::toTodoInfoDTO);
+        return convertToList(todoAppDAL.findTodosByTitle(title), false, todoInfoConverter::toTodoInfoDTO);
     }
 
 
     private List<TodoInfoDTO> findAllTodosCallback() {
-        return toList(todoAppDAL.findAllTodos(), true,
+        return convertToList(todoAppDAL.findAllTodos(), true,
                 todoInfoConverter::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findTodosByCompletedCallback(boolean completed) {
-        return toList(todoAppDAL.findTodosByCompleted(completed), true,
+        return convertToList(todoAppDAL.findTodosByCompleted(completed), true,
                 todoInfoConverter::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findTodosByTitleContainsCallback(String text) {
-        return toList(todoAppDAL.findTodosByTitle(text), false,
+        return convertToList(todoAppDAL.findTodosByTitle(text), false,
                 todoInfoConverter::toTodoInfoDTO);
     }
 
 
     private List<TodoInfoDTO> findByCompletedAndTitleCallback(boolean completed, String title) {
-        return toList(todoAppDAL.findByCompletedAndTitle(completed, title), true,
+        return convertToList(todoAppDAL.findByCompletedAndTitle(completed, title), true,
                 todoInfoConverter::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findByCompletedAndTitleContainsCallback(boolean completed, String text) {
-        return toList(todoAppDAL.findByCompletedAndTitleContains(completed, text), true,
+        return convertToList(todoAppDAL.findByCompletedAndTitleContains(completed, text), true,
                 todoInfoConverter::toTodoInfoDTO);
     }
 

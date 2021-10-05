@@ -13,12 +13,21 @@
         <module name="CreateObjectAutoWithComponent" />
         <module name="ServletRequestInfo" />
         <module name="ApplicationRunner" />
-        <module name="TodoAppJPA" />
         <module name="MovieServiceAppJDBC" />
         <module name="MovieApi" />
         <module name="CollectionInjection" />
         <module name="DependencyInjection" />
         <module name="RandomGneratorDO-NOT" />
+      </profile>
+      <profile name="Annotation profile for TodoAppJPA" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
+        </processorPath>
+        <module name="TodoAppJPA" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
