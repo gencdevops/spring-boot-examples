@@ -9,6 +9,7 @@ import com.example.todoappjpa.util.DatabaseUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -26,9 +27,10 @@ public class TodoService {
         this.todoSaveConverter = todoSaveConverter;
     }
 
-    private List<TodoInfoDTO> findTodosByTitleCallback(String title) {
-        return StreamSupport.stream(todoAppDAL.findTodosByTitle(title).spliterator(), false)
-                .map(todoInfoConverter::toTodoInfoDTO)
+    private static <T, R> List<R> toList(Iterable<? extends T> iterable, boolean parallel,
+                                         Function<? super T, ? extends R> function) {
+        return StreamSupport.stream(iterable.spliterator(), parallel)
+                .map(function)
                 .collect(Collectors.toList());
     }
 
@@ -36,34 +38,35 @@ public class TodoService {
         return todoInfoConverter.toTodoInfoDTO(todoAppDAL.saveTodo(todoSaveConverter.toTodo(todoSaveDTO)));
     }
 
+    private List<TodoInfoDTO> findTodosByTitleCallback(String title) {
+        return toList(todoAppDAL.findTodosByTitle(title), false, todoInfoConverter::toTodoInfoDTO);
+    }
+
+
     private List<TodoInfoDTO> findAllTodosCallback() {
-        return StreamSupport.stream(todoAppDAL.findAllTodos().spliterator(), true)
-                .map(todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return toList(todoAppDAL.findAllTodos(), true,
+                todoInfoConverter::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findTodosByCompletedCallback(boolean completed) {
-        return StreamSupport.stream(todoAppDAL.findTodosByCompleted(completed).spliterator(), true)
-                .map(todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return toList(todoAppDAL.findTodosByCompleted(completed), true,
+                todoInfoConverter::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findTodosByTitleContainsCallback(String text) {
-        return StreamSupport.stream(todoAppDAL.findTodosByTitleContains(text).spliterator(), false)
-                .map(todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return toList(todoAppDAL.findTodosByTitle(text), false,
+                todoInfoConverter::toTodoInfoDTO);
     }
 
+
     private List<TodoInfoDTO> findByCompletedAndTitleCallback(boolean completed, String title) {
-        return StreamSupport.stream(todoAppDAL.findByCompletedAndTitle(completed, title).spliterator(), false)
-                .map(todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return toList(todoAppDAL.findByCompletedAndTitle(completed, title), true,
+                todoInfoConverter::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findByCompletedAndTitleContainsCallback(boolean completed, String text) {
-        return StreamSupport.stream(todoAppDAL.findByCompletedAndTitleContains(completed, text).spliterator(), false)
-                .map(todoInfoConverter::toTodoInfoDTO)
-                .collect(Collectors.toList());
+        return toList(todoAppDAL.findByCompletedAndTitleContains(completed, text), true,
+                todoInfoConverter::toTodoInfoDTO);
     }
 
 
