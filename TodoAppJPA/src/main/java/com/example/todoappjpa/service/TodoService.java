@@ -33,7 +33,7 @@ public class TodoService {
     }
 
     private TodoInfoDTO saveCallback(TodoSaveDTO todoSaveDTO) {
-    return todoInfoConverter.toTodoInfoDTO(todoAppDAL.saveTodo(todoSaveConverter.toTodo(todoSaveDTO)));
+        return todoInfoConverter.toTodoInfoDTO(todoAppDAL.saveTodo(todoSaveConverter.toTodo(todoSaveDTO)));
     }
 
     private List<TodoInfoDTO> findAllTodosCallback() {
@@ -55,16 +55,21 @@ public class TodoService {
     }
 
     private List<TodoInfoDTO> findByCompletedAndTitleCallback(boolean completed, String title) {
-        return StreamSupport.stream(todoAppDAL.findByCompletedAndTitle(completed,title).spliterator(), false)
+        return StreamSupport.stream(todoAppDAL.findByCompletedAndTitle(completed, title).spliterator(), false)
+                .map(todoInfoConverter::toTodoInfoDTO)
+                .collect(Collectors.toList());
+    }
+
+    private List<TodoInfoDTO> findByCompletedAndTitleContainsCallback(boolean completed, String text) {
+        return StreamSupport.stream(todoAppDAL.findByCompletedAndTitleContains(completed, text).spliterator(), false)
                 .map(todoInfoConverter::toTodoInfoDTO)
                 .collect(Collectors.toList());
     }
 
 
-
     public TodoInfoDTO saveTodo(TodoSaveDTO todoSaveDTO) {
-    return DatabaseUtil.doWorkForService(() -> saveCallback(todoSaveDTO),
-            "TodoService.saveTodo");
+        return DatabaseUtil.doWorkForService(() -> saveCallback(todoSaveDTO),
+                "TodoService.saveTodo");
     }
 
     public List<TodoInfoDTO> findAllTodos() {
@@ -86,9 +91,14 @@ public class TodoService {
                 "TodoService.findTodosByTitleContains");
     }
 
-    public Iterable<TodoInfoDTO> findByCompletedAndTitle(boolean comleted, String title) {
-        return DatabaseUtil.doWorkForService(() -> findByCompletedAndTitleCallback(comleted,title),
+    public Iterable<TodoInfoDTO> findByCompletedAndTitle(boolean completed, String title) {
+        return DatabaseUtil.doWorkForService(() -> findByCompletedAndTitleCallback(completed, title),
                 "TodoService.findByCompletedAndTitle");
+    }
+
+    public Iterable<TodoInfoDTO> findByCompletedAndTitleContains(boolean completed, String text) {
+        return DatabaseUtil.doWorkForService(() -> findByCompletedAndTitleContainsCallback(completed, text),
+                "TodoService.findByCompletedAndTitleContains");
     }
 
 }

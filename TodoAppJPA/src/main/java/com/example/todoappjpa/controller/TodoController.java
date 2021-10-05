@@ -49,6 +49,11 @@ public class TodoController {
     return todoService.findByCompletedAndTitle(completed, title);
     }
 
+    @GetMapping("todos/find/title/completed/contains")
+    public Iterable<TodoInfoDTO> findByCompletedAndTitleContains(@RequestParam(defaultValue = "true") boolean completed, String text) {
+        return todoService.findByCompletedAndTitleContains(completed, text);
+    }
+
 
 
 
