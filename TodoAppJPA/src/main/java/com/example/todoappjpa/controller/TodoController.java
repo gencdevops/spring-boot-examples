@@ -28,6 +28,29 @@ public class TodoController {
         return todoService.findAllTodos();
     }
 
+    @GetMapping("todos/find/completed")
+    public List<TodoInfoDTO> findTodosByCompleted(@RequestParam("comp") boolean completed) {
+        return todoService.findTodosByCompleted(completed);
+    }
+
+    @GetMapping("todos/find/title")
+    public Iterable<TodoInfoDTO> findTodosByTitle(String title) {
+        return todoService.findTodosByTitle(title);
+    }
+
+    @GetMapping("todos/find/title/contains")
+    public Iterable<TodoInfoDTO> findTodosByTitleContains(String text) {
+        return todoService.findTodosByTitleContains(text);
+    }
+
+    @GetMapping("todos/find/title/completed")
+    public Iterable<TodoInfoDTO> findByCompletedAndTitle(@RequestParam(defaultValue = "true") boolean completed,
+                                                         String title) {
+    return todoService.findByCompletedAndTitle(completed, title);
+    }
+
+
+
 
 
 
