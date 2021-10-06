@@ -2,30 +2,30 @@ package com.example.todoappjpa.data.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
-@Table(name = "todos")
-public class Todo {// POJO (Plain Old Java Object)
+@Table(name = "items")
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "todo_id")
+    @Column(name = "item_id")
     public long id;
-
-    @Column(name = "title", length = 128, nullable = false)
-    public String title;
-
-    @Column(name = "description", length = 512)
-    public String description;
+    public String text;
 
     @Column(name = "insert_date_time", nullable = false)
     public LocalDateTime insertDateTime = LocalDateTime.now();
 
+    @Column(name = "last_update" , nullable = false)
+    public LocalDateTime lastUpdate = insertDateTime;
+
     @Column(name = "completed" , nullable = false)
     public boolean completed;
 
-    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Item> items;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "todo_id", nullable = false)
+    public Todo todo;
+
 
 }

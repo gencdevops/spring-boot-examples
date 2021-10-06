@@ -5,13 +5,19 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 
 public class TodoInfoDTO {
+    private long id;
     private String title;
-    private String text;
+    private String description;
     private LocalDateTime insertDateTime;
-    private LocalDateTime lastUpdate;
     private boolean completed;
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -21,12 +27,12 @@ public class TodoInfoDTO {
         this.title = title;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
@@ -38,14 +44,8 @@ public class TodoInfoDTO {
         this.insertDateTime = insertDateTime;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
-    public LocalDateTime getLastUpdate() {
-        return lastUpdate;
-    }
 
-    public void setLastUpdate(LocalDateTime lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
+
 
     public boolean isCompleted() {
         return completed;

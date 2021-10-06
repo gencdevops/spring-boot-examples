@@ -1,18 +1,22 @@
 package com.example.todoappjpa.data.dal;
 
 
+import com.example.todoappjpa.data.entity.Item;
 import com.example.todoappjpa.data.entity.Todo;
+import com.example.todoappjpa.data.repository.IItemRepository;
 import com.example.todoappjpa.data.repository.ITodoRepository;
 import com.example.todoappjpa.util.DatabaseUtil;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TodoAppDAL {
+public class TodoAppHelper {
 
     private final ITodoRepository todoRepository;
+    private final IItemRepository itemRepository;
 
-    public TodoAppDAL(ITodoRepository todoRepository) {
+    public TodoAppHelper(ITodoRepository todoRepository, IItemRepository iItemRepository) {
         this.todoRepository = todoRepository;
+        this.itemRepository = iItemRepository;
     }
 
     public Todo saveTodo(Todo todo) {
@@ -39,14 +43,24 @@ public class TodoAppDAL {
                 "TodoAppDAL.findTodosByTitleContains");
     }
 
-    public Iterable<Todo> findByCompletedAndTitle(boolean completed, String title) {
+    public Iterable<Todo> findTodosByCompletedAndTitle(boolean completed, String title) {
         return DatabaseUtil.doWorkForRepository(() -> todoRepository.findByCompletedAndTitle(completed, title),
                 "TodoAppDAL.findByCompletedAbdTitle");
     }
 
-    public Iterable<Todo> findByCompletedAndTitleContains(boolean completed, String text) {
+    public Iterable<Todo> findTodosByCompletedAndTitleContains(boolean completed, String text) {
         return DatabaseUtil.doWorkForRepository(() -> todoRepository.findByCompletedAndTitleContains(completed, text),
                 "TodoAppDAL.findByCompletedAndTitleContains");
+    }
+
+    public Iterable<Todo> findTodoByMonth(int month) {
+    return DatabaseUtil.doWorkForRepository(() -> todoRepository.findByMonth(month),
+            "TodoAppDAL.findTodoByMonth");
+    }
+
+    public Item saveItem(Item item) {
+        return DatabaseUtil.doWorkForRepository(() -> itemRepository.save(item),
+                "TodoAppDAL.saveItem");
     }
 
 }

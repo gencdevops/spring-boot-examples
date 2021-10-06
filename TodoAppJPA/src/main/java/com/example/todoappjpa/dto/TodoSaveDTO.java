@@ -1,8 +1,9 @@
 package com.example.todoappjpa.dto;
 
 public class TodoSaveDTO {
+    private long id;
 private String title;
-private String text;
+private String description;
 
     public String getTitle() {
         return title;
@@ -12,11 +13,19 @@ private String text;
         this.title = title;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

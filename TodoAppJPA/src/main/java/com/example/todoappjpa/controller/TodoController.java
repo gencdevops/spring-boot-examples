@@ -3,8 +3,7 @@ package com.example.todoappjpa.controller;
 
 import com.example.todoappjpa.dto.TodoInfoDTO;
 import com.example.todoappjpa.dto.TodoSaveDTO;
-import com.example.todoappjpa.service.TodoService;
-import org.springframework.http.ResponseEntity;
+import com.example.todoappjpa.service.TodoAppService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,48 +11,52 @@ import java.util.List;
 @RestController
 @RequestMapping("api/todo")
 public class TodoController {
-    private final TodoService todoService;
+    private final TodoAppService todoAppService;
 
-    public TodoController(TodoService todoService) {
-        this.todoService = todoService;
+    public TodoController(TodoAppService todoAppService) {
+        this.todoAppService = todoAppService;
     }
 
     @PostMapping("save")
     public TodoInfoDTO saveTodo(@RequestBody TodoSaveDTO todoSaveDTO) {
-        return todoService.saveTodo(todoSaveDTO);
+        return todoAppService.saveTodo(todoSaveDTO);
     }
 
     @GetMapping("todos/all")
     public List<TodoInfoDTO> findAllTodos() {
-        return todoService.findAllTodos();
+        return todoAppService.findAllTodos();
     }
 
     @GetMapping("todos/find/completed")
     public List<TodoInfoDTO> findTodosByCompleted(@RequestParam("comp") boolean completed) {
-        return todoService.findTodosByCompleted(completed);
+        return todoAppService.findTodosByCompleted(completed);
     }
 
     @GetMapping("todos/find/title")
     public Iterable<TodoInfoDTO> findTodosByTitle(String title) {
-        return todoService.findTodosByTitle(title);
+        return todoAppService.findTodosByTitle(title);
     }
 
     @GetMapping("todos/find/title/contains")
     public Iterable<TodoInfoDTO> findTodosByTitleContains(String text) {
-        return todoService.findTodosByTitleContains(text);
+        return todoAppService.findTodosByTitleContains(text);
     }
 
     @GetMapping("todos/find/title/completed")
-    public Iterable<TodoInfoDTO> findByCompletedAndTitle(@RequestParam(defaultValue = "true") boolean completed,
-                                                         String title) {
-    return todoService.findByCompletedAndTitle(completed, title);
+    public Iterable<TodoInfoDTO> findTodosByCompletedAndTitle(@RequestParam(defaultValue = "true") boolean completed,
+                                                              String title) {
+    return todoAppService.findTodosByCompletedAndTitle(completed, title);
     }
 
     @GetMapping("todos/find/title/completed/contains")
-    public Iterable<TodoInfoDTO> findByCompletedAndTitleContains(@RequestParam(defaultValue = "true") boolean completed, String text) {
-        return todoService.findByCompletedAndTitleContains(completed, text);
+    public Iterable<TodoInfoDTO> findTodosByCompletedAndTitleContains(@RequestParam(defaultValue = "true") boolean completed, String text) {
+        return todoAppService.findTodosByCompletedAndTitleContains(completed, text);
     }
 
+    @GetMapping("todos/find/month")
+    public List<TodoInfoDTO> findByMonth(int month) {
+        return todoAppService.findTodosByMonth(month);
+    }
 
 
 

@@ -1,6 +1,6 @@
 package com.example.todoappjpa.service;
 
-import com.example.todoappjpa.data.dal.TodoAppDAL;
+import com.example.todoappjpa.data.dal.TodoAppHelper;
 import com.example.todoappjpa.dto.TodoInfoDTO;
 import com.example.todoappjpa.dto.TodoSaveDTO;
 import com.example.todoappjpa.mapper.ITodoInfoMapper;
@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public class TodoService {
-    private final TodoAppDAL todoAppDAL;
+public class TodoAppService {
+    private final TodoAppHelper todoAppHelper;
     private final ITodoInfoMapper todoInfoMapper;
     private final ITodoSaveMapper todoSaveMapper;
 
-    public TodoService(TodoAppDAL todoAppDAL, ITodoInfoMapper todoInfoMapper, ITodoSaveMapper todoSaveMapper) {
-        this.todoAppDAL = todoAppDAL;
+    public TodoAppService(TodoAppHelper todoAppHelper, ITodoInfoMapper todoInfoMapper, ITodoSaveMapper todoSaveMapper) {
+        this.todoAppHelper = todoAppHelper;
         this.todoInfoMapper = todoInfoMapper;
         this.todoSaveMapper = todoSaveMapper;
     }
@@ -34,44 +34,48 @@ public class TodoService {
 
 
 
-    private TodoInfoDTO saveCallback(TodoSaveDTO todoSaveDTO) {
-        return todoInfoMapper.toTodoInfoDTO(todoAppDAL.saveTodo(todoSaveMapper.toTodo(todoSaveDTO)));
+    private TodoInfoDTO saveTodoCallback(TodoSaveDTO todoSaveDTO) {
+        return todoInfoMapper.toTodoInfoDTO(todoAppHelper.saveTodo(todoSaveMapper.toTodo(todoSaveDTO)));
     }
 
     private List<TodoInfoDTO> findTodosByTitleCallback(String title) {
-        return convertToList(todoAppDAL.findTodosByTitle(title), false, todoInfoMapper::toTodoInfoDTO);
+        return convertToList(todoAppHelper.findTodosByTitle(title), false, todoInfoMapper::toTodoInfoDTO);
     }
 
 
     private List<TodoInfoDTO> findAllTodosCallback() {
-        return convertToList(todoAppDAL.findAllTodos(), true,
+        return convertToList(todoAppHelper.findAllTodos(), true,
                 todoInfoMapper::toTodoInfoDTO);
     }
 
     private List<TodoInfoDTO> findTodosByCompletedCallback(boolean completed) {
-        return convertToList(todoAppDAL.findTodosByCompleted(completed), true,
+        return convertToList(todoAppHelper.findTodosByCompleted(completed), true,
                 todoInfoMapper::toTodoInfoDTO);
     }
 
-    private List<TodoInfoDTO> findTodosByTitleContainsCallback(String text) {
-        return convertToList(todoAppDAL.findTodosByTitle(text), false,
+    private List<TodoInfoDTO> findTodoByTitleContainsCallback(String text) {
+        return convertToList(todoAppHelper.findTodosByTitle(text), false,
                 todoInfoMapper::toTodoInfoDTO);
     }
 
 
-    private List<TodoInfoDTO> findByCompletedAndTitleCallback(boolean completed, String title) {
-        return convertToList(todoAppDAL.findByCompletedAndTitle(completed, title), true,
+    private List<TodoInfoDTO> findTodosByCompletedAndTitleCallback(boolean completed, String title) {
+        return convertToList(todoAppHelper.findTodosByCompletedAndTitle(completed, title), true,
                 todoInfoMapper::toTodoInfoDTO);
     }
 
-    private List<TodoInfoDTO> findByCompletedAndTitleContainsCallback(boolean completed, String text) {
-        return convertToList(todoAppDAL.findByCompletedAndTitleContains(completed, text), true,
+    private List<TodoInfoDTO> findTodosByCompletedAndTitleContainsCallback(boolean completed, String text) {
+        return convertToList(todoAppHelper.findTodosByCompletedAndTitleContains(completed, text), true,
                 todoInfoMapper::toTodoInfoDTO);
+    }
+
+    private List<TodoInfoDTO> findTodoByMonthCallback(int month) {
+        return convertToList(todoAppHelper.findTodoByMonth(month), false, todoInfoMapper::toTodoInfoDTO);
     }
 
 
     public TodoInfoDTO saveTodo(TodoSaveDTO todoSaveDTO) {
-        return DatabaseUtil.doWorkForService(() -> saveCallback(todoSaveDTO),
+        return DatabaseUtil.doWorkForService(() -> saveTodoCallback(todoSaveDTO),
                 "TodoService.saveTodo");
     }
 
@@ -90,18 +94,23 @@ public class TodoService {
     }
 
     public Iterable<TodoInfoDTO> findTodosByTitleContains(String text) {
-        return DatabaseUtil.doWorkForService(() -> findTodosByTitleContainsCallback(text),
+        return DatabaseUtil.doWorkForService(() -> findTodoByTitleContainsCallback(text),
                 "TodoService.findTodosByTitleContains");
     }
 
-    public Iterable<TodoInfoDTO> findByCompletedAndTitle(boolean completed, String title) {
-        return DatabaseUtil.doWorkForService(() -> findByCompletedAndTitleCallback(completed, title),
+    public Iterable<TodoInfoDTO> findTodosByCompletedAndTitle(boolean completed, String title) {
+        return DatabaseUtil.doWorkForService(() -> findTodosByCompletedAndTitleCallback(completed, title),
                 "TodoService.findByCompletedAndTitle");
     }
 
-    public Iterable<TodoInfoDTO> findByCompletedAndTitleContains(boolean completed, String text) {
-        return DatabaseUtil.doWorkForService(() -> findByCompletedAndTitleContainsCallback(completed, text),
+    public Iterable<TodoInfoDTO> findTodosByCompletedAndTitleContains(boolean completed, String text) {
+        return DatabaseUtil.doWorkForService(() -> findTodosByCompletedAndTitleContainsCallback(completed, text),
                 "TodoService.findByCompletedAndTitleContains");
+    }
+
+    public List<TodoInfoDTO> findTodosByMonth(int month) {
+    return DatabaseUtil.doWorkForService(() -> findTodoByMonthCallback(month),
+            "TodoService.findTodosByMonth");
     }
 
 }
