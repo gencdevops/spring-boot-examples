@@ -8,6 +8,9 @@ import com.example.todoappjpa.data.repository.ITodoRepository;
 import com.example.todoappjpa.util.DatabaseUtil;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+import java.util.Optional;
+
 @Component
 public class TodoAppHelper {
 
@@ -17,6 +20,17 @@ public class TodoAppHelper {
     public TodoAppHelper(ITodoRepository todoRepository, IItemRepository iItemRepository) {
         this.todoRepository = todoRepository;
         this.itemRepository = iItemRepository;
+    }
+
+
+    private Item saveItemCallback(Item item) {
+    var todoOpt = todoRepository.findById(item.todoId);
+    if(todoOpt.isEmpty())
+        throw new IllegalArgumentException("Invalid todo id");
+
+    item.todo = todoOpt.get();
+
+    return itemRepository.save(item);
     }
 
     public Todo saveTodo(Todo todo) {
@@ -58,10 +72,13 @@ public class TodoAppHelper {
             "TodoAppDAL.findTodoByMonth");
     }
 
+    @Transactional
     public Item saveItem(Item item) {
-        return DatabaseUtil.doWorkForRepository(() -> itemRepository.save(item),
+        return DatabaseUtil.doWorkForRepository(() -> saveItemCallback(item),
                 "TodoAppDAL.saveItem");
     }
+
+
 
 }
 

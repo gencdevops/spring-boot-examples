@@ -1,8 +1,13 @@
 package com.example.todoappjpa.service;
 
 import com.example.todoappjpa.data.dal.TodoAppHelper;
+import com.example.todoappjpa.data.entity.Item;
+import com.example.todoappjpa.dto.ItemInfoDTO;
+import com.example.todoappjpa.dto.ItemSaveDTO;
 import com.example.todoappjpa.dto.TodoInfoDTO;
 import com.example.todoappjpa.dto.TodoSaveDTO;
+import com.example.todoappjpa.mapper.IItemInfoMapper;
+import com.example.todoappjpa.mapper.IItemSaveMapper;
 import com.example.todoappjpa.mapper.ITodoInfoMapper;
 import com.example.todoappjpa.mapper.ITodoSaveMapper;
 import com.example.todoappjpa.util.DatabaseUtil;
@@ -18,11 +23,18 @@ public class TodoAppService {
     private final TodoAppHelper todoAppHelper;
     private final ITodoInfoMapper todoInfoMapper;
     private final ITodoSaveMapper todoSaveMapper;
+    private final IItemInfoMapper itemInfoMapper;
+    private final IItemSaveMapper itemSaveMapper;
 
-    public TodoAppService(TodoAppHelper todoAppHelper, ITodoInfoMapper todoInfoMapper, ITodoSaveMapper todoSaveMapper) {
+    public TodoAppService(TodoAppHelper todoAppHelper, ITodoInfoMapper todoInfoMapper,
+                          ITodoSaveMapper todoSaveMapper,
+                          IItemInfoMapper itemInfoMapper,
+                          IItemSaveMapper itemSaveMapper) {
         this.todoAppHelper = todoAppHelper;
         this.todoInfoMapper = todoInfoMapper;
         this.todoSaveMapper = todoSaveMapper;
+        this.itemInfoMapper = itemInfoMapper;
+        this.itemSaveMapper = itemSaveMapper;
     }
 
     private static <T, R> List<R> convertToList(Iterable<? extends T> iterable, boolean parallel,
@@ -74,6 +86,12 @@ public class TodoAppService {
     }
 
 
+    private ItemSaveDTO  saveItemCallback(ItemSaveDTO itemSaveDTO) {
+
+        return itemSaveMapper.toItemSaveDTO(todoAppHelper.saveItem(itemSaveMapper.toItem(itemSaveDTO)));
+    }
+
+
     public TodoInfoDTO saveTodo(TodoSaveDTO todoSaveDTO) {
         return DatabaseUtil.doWorkForService(() -> saveTodoCallback(todoSaveDTO),
                 "TodoService.saveTodo");
@@ -111,6 +129,11 @@ public class TodoAppService {
     public List<TodoInfoDTO> findTodosByMonth(int month) {
     return DatabaseUtil.doWorkForService(() -> findTodoByMonthCallback(month),
             "TodoService.findTodosByMonth");
+    }
+
+    public ItemSaveDTO saveItem(ItemSaveDTO itemSaveDTO) {
+        return DatabaseUtil.doWorkForService(() -> saveItemCallback(itemSaveDTO),
+                "TodoService.saveItem");
     }
 
 }

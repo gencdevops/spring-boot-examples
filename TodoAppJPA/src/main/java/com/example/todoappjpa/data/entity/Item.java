@@ -27,5 +27,7 @@ public class Item {
     @JoinColumn(name = "todo_id", nullable = false)
     public Todo todo;
 
+    @Transient
+    public long todoId;
 
 }
