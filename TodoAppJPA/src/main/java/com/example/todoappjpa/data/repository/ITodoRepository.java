@@ -1,6 +1,7 @@
 package com.example.todoappjpa.data.repository;
 
 import com.example.todoappjpa.data.entity.Todo;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ITodoRepository extends CrudRepository<Todo, Long> {
@@ -24,7 +25,9 @@ public interface ITodoRepository extends CrudRepository<Todo, Long> {
     //@Query("select t from Todo t where t.completed = ?1 or t.title = ?2")
     Iterable<Todo> findByCompletedAndTitleContains(boolean completed, String title);
 
-    //@Query("select t from Todo t where t.title = ?1")
-    //Iterable<Todo> findByTitleOrderBy(String title);
+
+    @Query(value ="select * from todos where date_part('month', insert_date_time)=?", nativeQuery = true)
+    Iterable<Todo> findByMonth(int month);
+
 
 }

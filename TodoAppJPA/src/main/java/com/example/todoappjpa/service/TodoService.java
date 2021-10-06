@@ -1,7 +1,5 @@
 package com.example.todoappjpa.service;
 
-import com.example.todoappjpa.converter.TodoInfoConverter;
-import com.example.todoappjpa.converter.TodoSaveConverter;
 import com.example.todoappjpa.data.dal.TodoAppDAL;
 import com.example.todoappjpa.dto.TodoInfoDTO;
 import com.example.todoappjpa.dto.TodoSaveDTO;
