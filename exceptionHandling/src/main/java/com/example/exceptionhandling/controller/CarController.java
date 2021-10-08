@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/car")
+@RequestMapping("/v1/car")
 public class CarController {
     private final CarService carService;
 
@@ -20,10 +20,7 @@ public class CarController {
         return ResponseEntity.ok(carService.getCar(name));
     }
 
-    @ExceptionHandler({EntityNotFoundException.class})
-    public String entityNotFound() {
-        return "Record not found";
-    }
+
 
 
 }

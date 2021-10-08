@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class CarService {
-    private static List<Car> carList = new ArrayList<>();
+    private static final List<Car> carList = new ArrayList<>();
 
     @PostConstruct
     private void initCar() {
@@ -21,6 +21,9 @@ public class CarService {
     }
 
     public Car getCar(String name) {
+        if(name.startsWith("1"))
+            throw new IllegalArgumentException();
+
       return  carList.stream()
                 .filter(car -> car.getName().equals(name))
                 .findFirst()
