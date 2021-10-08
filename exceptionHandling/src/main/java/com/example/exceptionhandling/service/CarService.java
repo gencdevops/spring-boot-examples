@@ -1,6 +1,7 @@
 package com.example.exceptionhandling.service;
 
 import com.example.exceptionhandling.dto.Car;
+import com.example.exceptionhandling.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -20,5 +21,9 @@ public class CarService {
     }
 
     public Car getCar(String name) {
+      return  carList.stream()
+                .filter(car -> car.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new EntityNotFoundException(name));
     }
 }
