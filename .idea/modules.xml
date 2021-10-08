@@ -4,10 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Account/Account.iml" filepath="$PROJECT_DIR$/Account/Account.iml" />
       <module fileurl="file://$PROJECT_DIR$/ApplicationRunner/ApplicationRunner.iml" filepath="$PROJECT_DIR$/ApplicationRunner/ApplicationRunner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BooksStoreApp/BooksStoreApp.iml" filepath="$PROJECT_DIR$/BooksStoreApp/BooksStoreApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/CollectionInjection/CollectionInjection.iml" filepath="$PROJECT_DIR$/CollectionInjection/CollectionInjection.iml" />
       <module fileurl="file://$PROJECT_DIR$/CreateObjectAutoWithComponent/CreateObjectAutoWithComponent.iml" filepath="$PROJECT_DIR$/CreateObjectAutoWithComponent/CreateObjectAutoWithComponent.iml" />
       <module fileurl="file://$PROJECT_DIR$/DependencyInjection/DependencyInjection.iml" filepath="$PROJECT_DIR$/DependencyInjection/DependencyInjection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GlobalExceptionHandling/ExceptionHandling/ExceptionHandling.iml" filepath="$PROJECT_DIR$/GlobalExceptionHandling/ExceptionHandling/ExceptionHandling.iml" />
       <module fileurl="file://$PROJECT_DIR$/MovieApi/MovieApi.iml" filepath="$PROJECT_DIR$/MovieApi/MovieApi.iml" />
       <module fileurl="file://$PROJECT_DIR$/MovieServiceAppJDBC/MovieServiceAppJDBC.iml" filepath="$PROJECT_DIR$/MovieServiceAppJDBC/MovieServiceAppJDBC.iml" />
       <module fileurl="file://$PROJECT_DIR$/RandomGneratorDO-NOT/RandomGneratorDO-NOT.iml" filepath="$PROJECT_DIR$/RandomGneratorDO-NOT/RandomGneratorDO-NOT.iml" />
@@ -15,6 +15,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/SpringBoot.iml" filepath="$PROJECT_DIR$/.idea/SpringBoot.iml" />
       <module fileurl="file://$PROJECT_DIR$/TodoAppJPA/TodoAppJPA.iml" filepath="$PROJECT_DIR$/TodoAppJPA/TodoAppJPA.iml" />
       <module fileurl="file://$PROJECT_DIR$/ValueAnnotation/ValueAnnotation.iml" filepath="$PROJECT_DIR$/ValueAnnotation/ValueAnnotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exceptionHandling/exceptionHandling.iml" filepath="$PROJECT_DIR$/exceptionHandling/exceptionHandling.iml" />
     </modules>
   </component>
 </project>

@@ -12,9 +12,10 @@
         <option value="$PROJECT_DIR$/ServletRequestInfo/pom.xml" />
         <option value="$PROJECT_DIR$/MovieServiceAppJDBC/pom.xml" />
         <option value="$PROJECT_DIR$/Account/pom.xml" />
-        <option value="$PROJECT_DIR$/BooksStoreApp/pom.xml" />
         <option value="$PROJECT_DIR$/MovieApi/pom.xml" />
         <option value="$PROJECT_DIR$/TodoAppJPA/pom.xml" />
+        <option value="$PROJECT_DIR$/GlobalExceptionHandling/ExceptionHandling/pom.xml" />
+        <option value="$PROJECT_DIR$/exceptionHandling/pom.xml" />
       </list>
     </option>
   </component>

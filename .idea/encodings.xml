@@ -3,7 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/Account/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ApplicationRunner/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/BooksStoreApp/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CollectionInjection/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CreateObjectAutoWithComponent/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/DependencyInjection/src/main/java" charset="UTF-8" />
@@ -13,5 +12,6 @@
     <file url="file://$PROJECT_DIR$/ServletRequestInfo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TodoAppJPA/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ValueAnnotation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exceptionHandling/src/main/java" charset="UTF-8" />
   </component>
 </project>
