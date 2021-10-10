@@ -45,8 +45,6 @@ public class TodoInfoDTO {
     }
 
 
-
-
     public boolean isCompleted() {
         return completed;
     }

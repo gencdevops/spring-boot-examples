@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TodoAppJPA/TodoAppJPA.iml" filepath="$PROJECT_DIR$/TodoAppJPA/TodoAppJPA.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TodoAppMicroServis.iml" filepath="$PROJECT_DIR$/.idea/TodoAppMicroServis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TodoItemInfoService.iml" filepath="$PROJECT_DIR$/TodoItemInfoService.iml" />
     </modules>
   </component>
 </project>

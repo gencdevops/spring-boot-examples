@@ -43,7 +43,6 @@ public class TodoAppService {
     }
 
 
-
     private TodoInfoDTO saveTodoCallback(TodoSaveDTO todoSaveDTO) {
         return todoInfoMapper.toTodoInfoDTO(todoAppHelper.saveTodo(todoSaveMapper.toTodo(todoSaveDTO)));
     }
@@ -84,7 +83,7 @@ public class TodoAppService {
     }
 
 
-    private ItemSaveDTO  saveItemCallback(ItemSaveDTO itemSaveDTO) {
+    private ItemSaveDTO saveItemCallback(ItemSaveDTO itemSaveDTO) {
 
         return itemSaveMapper.toItemSaveDTO(todoAppHelper.saveItem(itemSaveMapper.toItem(itemSaveDTO)));
     }
@@ -125,8 +124,8 @@ public class TodoAppService {
     }
 
     public List<TodoInfoDTO> findTodosByMonth(int month) {
-    return DatabaseUtil.doWorkForService(() -> findTodoByMonthCallback(month),
-            "TodoService.findTodosByMonth");
+        return DatabaseUtil.doWorkForService(() -> findTodoByMonthCallback(month),
+                "TodoService.findTodosByMonth");
     }
 
     public ItemSaveDTO saveItem(ItemSaveDTO itemSaveDTO) {

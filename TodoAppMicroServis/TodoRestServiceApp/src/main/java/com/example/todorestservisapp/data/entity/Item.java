@@ -16,10 +16,10 @@ public class Item {
     @Column(name = "insert_date_time", nullable = false)
     public LocalDateTime insertDateTime = LocalDateTime.now();
 
-    @Column(name = "last_update" , nullable = false)
+    @Column(name = "last_update", nullable = false)
     public LocalDateTime lastUpdate = insertDateTime;
 
-    @Column(name = "completed" , nullable = false)
+    @Column(name = "completed", nullable = false)
     public boolean completed;
 
 

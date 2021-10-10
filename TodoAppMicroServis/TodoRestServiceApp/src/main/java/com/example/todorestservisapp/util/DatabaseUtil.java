@@ -8,15 +8,15 @@ public final class DatabaseUtil {
 
     }
 
-    public static<R> R doWorkForRepository(ISupplierCallback<R> supplier, String msg) {
-        try{
-           return supplier.get();
+    public static <R> R doWorkForRepository(ISupplierCallback<R> supplier, String msg) {
+        try {
+            return supplier.get();
         } catch (Throwable ex) {
             throw new RepositoryException(msg, ex);
         }
     }
 
-    public static<R> R doWorkForService(ISupplierCallback<R> supplier, String msg) {
+    public static <R> R doWorkForService(ISupplierCallback<R> supplier, String msg) {
         try {
             return supplier.get();
         } catch (Throwable ex) {

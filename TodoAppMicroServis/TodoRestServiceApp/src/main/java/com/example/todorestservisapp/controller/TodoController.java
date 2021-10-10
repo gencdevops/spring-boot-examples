@@ -45,7 +45,7 @@ public class TodoController {
     @GetMapping("todos/find/title/completed")
     public Iterable<TodoInfoDTO> findTodosByCompletedAndTitle(@RequestParam(defaultValue = "true") boolean completed,
                                                               String title) {
-    return todoAppService.findTodosByCompletedAndTitle(completed, title);
+        return todoAppService.findTodosByCompletedAndTitle(completed, title);
     }
 
     @GetMapping("todos/find/title/completed/contains")
@@ -57,9 +57,6 @@ public class TodoController {
     public List<TodoInfoDTO> findByMonth(int month) {
         return todoAppService.findTodosByMonth(month);
     }
-
-
-
 
 
 }

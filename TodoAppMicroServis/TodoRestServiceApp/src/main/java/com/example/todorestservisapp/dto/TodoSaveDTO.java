@@ -2,8 +2,8 @@ package com.example.todorestservisapp.dto;
 
 public class TodoSaveDTO {
     private long id;
-private String title;
-private String description;
+    private String title;
+    private String description;
 
     public String getTitle() {
         return title;

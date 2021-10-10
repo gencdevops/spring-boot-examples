@@ -7,5 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(implementationName = "TodoInfoMapperImpl", componentModel = "spring")
 public interface ITodoInfoMapper {
     Todo toTodo(TodoInfoDTO todoInfoDTO);
+
     TodoInfoDTO toTodoInfoDTO(Todo todo);
 }

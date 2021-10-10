@@ -22,7 +22,7 @@ public class Todo {// POJO (Plain Old Java Object)
     @Column(name = "insert_date_time", nullable = false)
     public LocalDateTime insertDateTime = LocalDateTime.now();
 
-    @Column(name = "completed" , nullable = false)
+    @Column(name = "completed", nullable = false)
     public boolean completed;
 
     @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

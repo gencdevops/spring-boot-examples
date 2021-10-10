@@ -23,13 +23,13 @@ public class TodoAppHelper {
 
 
     private Item saveItemCallback(Item item) {
-    var todoOpt = todoRepository.findById(item.todoId);
-    if(todoOpt.isEmpty())
-        throw new IllegalArgumentException("Invalid todo id");
+        var todoOpt = todoRepository.findById(item.todoId);
+        if (todoOpt.isEmpty())
+            throw new IllegalArgumentException("Invalid todo id");
 
-    item.todo = todoOpt.get();
+        item.todo = todoOpt.get();
 
-    return itemRepository.save(item);
+        return itemRepository.save(item);
     }
 
     public Todo saveTodo(Todo todo) {
@@ -67,8 +67,8 @@ public class TodoAppHelper {
     }
 
     public Iterable<Todo> findTodoByMonth(int month) {
-    return DatabaseUtil.doWorkForRepository(() -> todoRepository.findByMonth(month),
-            "TodoAppDAL.findTodoByMonth");
+        return DatabaseUtil.doWorkForRepository(() -> todoRepository.findByMonth(month),
+                "TodoAppDAL.findTodoByMonth");
     }
 
     @Transactional
@@ -76,7 +76,6 @@ public class TodoAppHelper {
         return DatabaseUtil.doWorkForRepository(() -> saveItemCallback(item),
                 "TodoAppDAL.saveItem");
     }
-
 
 
 }
