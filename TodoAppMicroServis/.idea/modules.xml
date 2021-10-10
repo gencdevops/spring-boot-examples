@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/TodoAppJPA/TodoAppJPA.iml" filepath="$PROJECT_DIR$/TodoAppJPA/TodoAppJPA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TodoAppMicroServis.iml" filepath="$PROJECT_DIR$/.idea/TodoAppMicroServis.iml" />
+    </modules>
+  </component>
+</project>
